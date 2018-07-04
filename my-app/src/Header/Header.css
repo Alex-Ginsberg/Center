@@ -1,0 +1,13 @@
+.Header
+{
+    display: flex;
+    padding-left: 36px;
+    background-color: #1e5799;
+}
+
+.Header-text
+{
+    color: white;
+    font-family: 'Cabin', sans-serif;
+    font-size: 24px;
+}

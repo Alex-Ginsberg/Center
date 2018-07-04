@@ -1,0 +1,28 @@
+.Hero
+{
+    background: linear-gradient(to bottom, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+    height: 400px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.Hero-wrapper
+{
+    width: 100%;
+}
+
+.Hero-title
+{
+    font-family: 'Cabin', sans-serif;
+    font-size: 36px;
+    margin-top: 0;
+    width: 100%;
+}
+
+.Hero-subtitle
+{
+    font-family: 'Cabin', sans-serif;
+    font-size: 24px;
+    width: 100%;
+}
