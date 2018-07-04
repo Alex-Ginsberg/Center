@@ -23,14 +23,18 @@ class Login extends Component {
         console.log(error.code)
         console.log(error.message)
     })
-    var userRef = firebase.database().ref('users')
-    userRef.push({
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        password: this.state.password
-      })
-      console.log(firebase.auth().currentUser)
+    .then(user => {
+        var userRef = firebase.database().ref('users')
+        console.log(userRef)
+        userRef.push({
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password
+        })
+        console.log(firebase.auth().currentUser)
+    })
+    
   }
 
   handleLogin(e) {
