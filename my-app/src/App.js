@@ -4,25 +4,34 @@ import './App.css';
 import Header from './Header/Header.js';
 import Hero from './Hero/Hero.js';
 import Login from './Login/Login.js';
+import Dashboard from './Dashboard/Dashboard.js';
 import {connect} from 'react-redux'
-import { checkUser } from './store'
+import { checkUser, authSet } from './store'
+import firebase from './firebase'
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: {}
+    }
   }
 
   componentDidMount() {
-    this.props.isLoggedIn()
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        this.setState({currentUser: user})
+      }
+    }.bind(this))
   }
 
   render() {
-    console.log(this.props.user)
+    let view = this.state.currentUser ? <Dashboard /> : <Login />;
     return (
       <div className="App">
         <Header />
         <Hero />
-        <Login />
+        {view}
       </div>
     );
   }
@@ -38,6 +47,9 @@ const mapDispatch = dispatch => {
   return {
     isLoggedIn() {
       dispatch(checkUser());
+    },
+    setUser(user) {
+      dispatch(authSet(user));
     }
   }
 }
