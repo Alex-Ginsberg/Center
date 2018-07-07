@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Login.css';
 import firebase from '../firebase.js'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 
 class Login extends Component {
   constructor() {
@@ -38,10 +40,22 @@ class Login extends Component {
   }
 
   handleLogin(e) {
-      console.log('loding');
+      e.preventDefault();
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .then(() => {
+            firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(error => {
+                console.log(error.code);
+                console.log(error.message);
+              })
+              .then(user => {
+                  console.log(user)
+                  console.log(firebase.auth().currentUser)
+              })
+        })
   }
 
   render() {
+    console.log(firebase.auth().currentUser)
     if (this.state.showSignup) {
         return(
             <div className="Signup">
@@ -90,4 +104,24 @@ class Login extends Component {
   }
 }
 
-export default Login;
+// /**
+//  * CONTAINER
+//  */
+// const mapState = (state) => {
+//     return {
+//       user: state.user
+//     }
+//   }
+  
+//   const mapDispatch = (dispatch) => {
+//     return {
+//       isLoggedIn() {
+//         dispatch(me())
+//       }
+//     }
+//   }
+  
+// The `withRouter` wrapper makes sure that updates are not blocked
+// when the url changes
+export default connect()(Login)
+
