@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   render() {
-    let view = this.state.currentUser ? <Dashboard /> : <Login />;
+    let view = this.state.currentUser.email ? <Dashboard user={this.state.currentUser} /> : <Login />;
     return (
       <div className="App">
         <Header />
