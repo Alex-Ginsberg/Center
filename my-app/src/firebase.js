@@ -1,4 +1,6 @@
 import * as firebase from 'firebase';
+import { setUser } from './store'
+import store from './store'
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyDLoZUAx5sQ0JwNwB2zPgHtN0su11coGGg",
@@ -9,5 +11,5 @@ import * as firebase from 'firebase';
     messagingSenderId: "569912220334"
   };
   firebase.initializeApp(config);
-
+  
   export default firebase;

@@ -20,7 +20,6 @@ class Login extends Component {
 
   handleSignup(e) {
     e.preventDefault();
-    console.log('handling')
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function (error) {
         console.log(error.code)
         console.log(error.message)
@@ -55,7 +54,6 @@ class Login extends Component {
   }
 
   render() {
-    console.log(firebase.auth().currentUser)
     if (this.state.showSignup) {
         return(
             <div className="Signup">
